@@ -12,7 +12,7 @@
 class Hyperduino
 {
   public:
-    Hyperduino(String type);
+    Hyperduino(char type, float versionNumber = 0);
     void forward();
     void backward();
     void speedSet(int pace);
@@ -20,7 +20,8 @@ class Hyperduino
     void activateAll();
     void begin();
   private:
-    String _type;
+    char _type;
+    float _versionNumber;
     #define speedControlPinA 9
     #define motorPinA1 7
     #define motorPinA2 8
