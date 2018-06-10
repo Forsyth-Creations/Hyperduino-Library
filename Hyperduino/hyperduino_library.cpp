@@ -7,50 +7,62 @@
 #include "Arduino.h"
 #include "hyperduino_library.h"
 
-Hyperduino::Hyperduino(char type, float versionNumber = 0)
-{
-  _type = type;
+Hyperduino::Hyperduino(float versionNumber = 0){
   _versionNumber = versionNumber;
 }
 
-void Hyperduino::forward() {
-  if (_type == 'A') {
+void Hyperduino::forward(char whichMotor) 
+{
+  if (whichMotor == 'A') {
     Serial.println("A Forward");
     digitalWrite(motorPinA1, HIGH);
     digitalWrite(motorPinA2, LOW);
   }
-  if (_type == 'B') {
-
+  if (whichMotor == 'B') {
+    Serial.println("B Forward");
+    digitalWrite(motorPinB1, HIGH);
+    digitalWrite(motorPinB2, LOW);
   }
 }
-void Hyperduino::backward() {
-  if (_type == 'A') {
+
+void Hyperduino::backward(char whichMotor) 
+{
+  if (whichMotor == 'A') {
     Serial.println("A Backward");
     digitalWrite(motorPinA1, LOW);
     digitalWrite(motorPinA2, HIGH);
   }
-  if (_type == 'B') {
-
+  if (whichMotor == 'B') {
+    Serial.println("B Backward");
+    digitalWrite(motorPinB1, LOW);
+    digitalWrite(motorPinB2, HIGH);
   }
 }
-void Hyperduino::speedSet(int pace) {
-    if (_type == 'A') {
+
+void Hyperduino::speedSetMotor(char whichMotor, int pace) 
+{
+  if (whichMotor == 'A') {
     Serial.print("Speed Set to: ");
     Serial.println(pace);
     analogWrite(speedControlPinA, pace);
   }
-  if (_type == 'B') {
+  if (whichMotor == 'B') {
     Serial.print("Speed Set to: ");
     Serial.println(pace);
     analogWrite(speedControlPinB, pace);
   }
 }
-void Hyperduino::stopAll() {
+
+void Hyperduino::stopAllMotors() 
+{
   digitalWrite(standbyPin, LOW);
 }
-void Hyperduino::activateAll() {
+
+void Hyperduino::activateAllMotors() 
+{
   digitalWrite(standbyPin, HIGH);
 }
+
 void Hyperduino::begin() {
   pinMode(speedControlPinA, OUTPUT);
   pinMode(motorPinA1, OUTPUT);
@@ -59,7 +71,8 @@ void Hyperduino::begin() {
   Serial.begin(9600);
   Serial.println("Hyperduino Library Operational");
   Serial.print("Hyperduino Specs: ");
-  Serial.print(_type);
-  Serial.print(" , ");
-  Serial.print(_versionNumber);
+  Serial.println(_versionNumber);
+  digitalWrite(standbyPin, HIGH);
+  delay(1000);
 }
+

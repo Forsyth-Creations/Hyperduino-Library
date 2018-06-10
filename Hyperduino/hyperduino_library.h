@@ -12,12 +12,12 @@
 class Hyperduino
 {
   public:
-    Hyperduino(char type, float versionNumber = 0);
-    void forward();
-    void backward();
-    void speedSet(int pace);
-    void stopAll();
-    void activateAll();
+    Hyperduino(float versionNumber = 0);
+    void forward(char whichMotor);
+    void backward(char whichMotor);
+    void speedSetMotor(char whichMotor, int pace);
+    void stopAllMotors();
+    void activateAllMotors();
     void begin();
   private:
     char _type;
