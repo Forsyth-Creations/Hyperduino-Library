@@ -1,6 +1,5 @@
 #include "hyperduino_library.h"
 
-
 Hyperduino bob(2.4);
 
 void setup() {
