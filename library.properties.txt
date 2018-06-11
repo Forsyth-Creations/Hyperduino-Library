@@ -1,0 +1,9 @@
+name= Hyperduino Library
+version=1
+author= Robert Forsyth 
+maintainer= Robert Forsyth 
+sentence= Allows anyone to control H-Bridge for Hyperduino
+paragraph= Test Test
+category= Device Control
+url= https://github.com/HullabalooRobotics/Hyperduino-Library
+architectures= Arduino
